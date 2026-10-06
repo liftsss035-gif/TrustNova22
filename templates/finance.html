@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - Finance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2>Financial Risk</h2>
+
+            <div class="user-mini">
+                <strong>{{ session.user_name }}</strong>
+
+                <div class="avatar">
+                    {{ session.user_name[0]|upper }}
+                </div>
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="welcome">
+
+                <div>
+                    <h1>Financial Risk Intelligence</h1>
+
+                    <p>
+                        Monitor financial stability and identify potential
+                        business risks.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats">
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Financial Risk
+                    </div>
+
+                    <div class="stat-value">
+                        38
+                    </div>
+
+                    <div class="stat-icon">
+                        ₹
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Cash Flow
+                    </div>
+
+                    <div class="stat-value">
+                        Stable
+                    </div>
+
+                    <div class="stat-icon">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Debt Exposure
+                    </div>
+
+                    <div class="stat-value">
+                        Low
+                    </div>
+
+                    <div class="stat-icon">
+                        ↓
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Financial Status
+                    </div>
+
+                    <div class="stat-value">
+                        Healthy
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAIN GRID -->
+
+            <div class="finance-grid">
+
+
+                <!-- SCORE -->
+
+                <div class="card">
+
+                    <h3>Financial Risk Score</h3>
+
+                    <p>
+                        Current assessment of your financial risk exposure.
+                    </p>
+
+                    <div class="finance-score">
+
+                        <div class="big-score">
+                            38
+                        </div>
+
+                        <div>
+                            <span class="badge badge-low">
+                                Low Risk
+                            </span>
+
+                            <p>
+                                Financial position appears stable.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="progress">
+                        <span style="width:38%;"></span>
+                    </div>
+
+                </div>
+
+
+                <!-- AI INSIGHT -->
+
+                <div class="card">
+
+                    <h3>AI Financial Insight</h3>
+
+                    <div class="insight-box">
+
+                        <div class="insight-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Stable Financial Position
+                            </strong>
+
+                            <p>
+                                Your current financial indicators show
+                                relatively low risk. Continue monitoring
+                                cash flow, debt and operating expenses.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINANCIAL INDICATORS -->
+
+            <div class="card section-card">
+
+                <h3>Financial Indicators</h3>
+
+                <p>
+                    Key areas monitored by TrustNova.
+                </p>
+
+
+                <div class="indicator-grid">
+
+
+                    <div class="indicator">
+
+                        <div class="indicator-top">
+                            <strong>Cash Flow</strong>
+                            <span>Low Risk</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:30%;"></span>
+                        </div>
+
+                        <small>
+                            Healthy incoming and outgoing cash movement.
+                        </small>
+
+                    </div>
+
+
+                    <div class="indicator">
+
+                        <div class="indicator-top">
+                            <strong>Debt Risk</strong>
+                            <span>Low Risk</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:25%;"></span>
+                        </div>
+
+                        <small>
+                            Current debt exposure remains manageable.
+                        </small>
+
+                    </div>
+
+
+                    <div class="indicator">
+
+                        <div class="indicator-top">
+                            <strong>Expense Risk</strong>
+                            <span>Medium</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:48%;"></span>
+                        </div>
+
+                        <small>
+                            Operating expenses should be monitored regularly.
+                        </small>
+
+                    </div>
+
+
+                    <div class="indicator">
+
+                        <div class="indicator-top">
+                            <strong>Revenue Stability</strong>
+                            <span>Stable</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:32%;"></span>
+                        </div>
+
+                        <small>
+                            Revenue indicators currently appear stable.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECOMMENDATION -->
+
+            <div class="card recommendation-card">
+
+                <h3>💡 Recommended Actions</h3>
+
+                <div class="recommendations">
+
+                    <div>
+                        <span>01</span>
+                        <p>Maintain an emergency cash reserve.</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>Monitor monthly operating expenses.</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>Review debt obligations regularly.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+.finance-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:18px;
+}
+
+.finance-score {
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin:25px 0 18px;
+}
+
+.finance-score p {
+    color:#647482;
+    font-size:12px;
+    margin-top:8px;
+}
+
+.insight-box {
+    display:flex;
+    gap:15px;
+    padding:18px;
+    margin-top:20px;
+    border-radius:14px;
+    background:#111820;
+    border:1px solid #263441;
+}
+
+.insight-icon {
+    min-width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    color:#00c2d7;
+    background:rgba(0,194,215,.10);
+}
+
+.insight-box strong {
+    color:#f1f5f9;
+}
+
+.insight-box p {
+    margin-top:7px;
+    color:#91a0ad;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.section-card {
+    margin-top:18px;
+}
+
+.indicator-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:22px;
+}
+
+.indicator {
+    padding:18px;
+    background:#111820;
+    border:1px solid #263441;
+    border-radius:13px;
+}
+
+.indicator-top {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.indicator-top strong {
+    color:#f1f5f9;
+    font-size:13px;
+}
+
+.indicator-top span {
+    color:#20d89a;
+    font-size:11px;
+}
+
+.indicator small {
+    display:block;
+    margin-top:10px;
+    color:#647482;
+    line-height:1.5;
+}
+
+.recommendation-card {
+    margin-top:18px;
+}
+
+.recommendations {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.recommendations div {
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding:16px;
+    background:#111820;
+    border:1px solid #263441;
+    border-radius:12px;
+}
+
+.recommendations span {
+    color:#00c2d7;
+    font-weight:700;
+}
+
+.recommendations p {
+    color:#91a0ad;
+    font-size:12px;
+}
+
+@media(max-width:800px) {
+
+    .finance-grid,
+    .indicator-grid,
+    .recommendations {
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

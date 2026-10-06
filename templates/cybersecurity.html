@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cybersecurity - TrustNova</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div>
+                <h1>Cybersecurity</h1>
+                <p>Monitor and understand your digital security risks.</p>
+            </div>
+
+            <div class="topbar-user">
+                <div class="avatar">
+                    {{ session.get('user_name', 'U')[0]|upper }}
+                </div>
+
+                <div>
+                    <strong>{{ session.get('user_name', 'User') }}</strong>
+                    <small>Risk Analyst</small>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- PAGE INTRO -->
+            <div class="welcome">
+                <div>
+                    <span class="eyebrow">CYBER RISK INTELLIGENCE</span>
+
+                    <h2>
+                        Protect your digital environment
+                    </h2>
+
+                    <p>
+                        Identify cybersecurity weaknesses and understand
+                        potential threats before they become serious problems.
+                    </p>
+                </div>
+
+                <div class="welcome-icon">
+                    🛡️
+                </div>
+            </div>
+
+
+            <!-- SECURITY STATS -->
+            <div class="stats">
+
+                <div class="card stat-card">
+                    <div class="stat-icon blue">
+                        🛡️
+                    </div>
+
+                    <div>
+                        <span>Security Score</span>
+                        <strong>82%</strong>
+                        <small>Good protection</small>
+                    </div>
+                </div>
+
+
+                <div class="card stat-card">
+                    <div class="stat-icon purple">
+                        ⚠️
+                    </div>
+
+                    <div>
+                        <span>Threats Detected</span>
+                        <strong>03</strong>
+                        <small>Needs attention</small>
+                    </div>
+                </div>
+
+
+                <div class="card stat-card">
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Systems Protected</span>
+                        <strong>94%</strong>
+                        <small>Healthy</small>
+                    </div>
+                </div>
+
+
+                <div class="card stat-card">
+                    <div class="stat-icon orange">
+                        🔐
+                    </div>
+
+                    <div>
+                        <span>Risk Level</span>
+                        <strong>Low</strong>
+                        <small>Currently stable</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN GRID -->
+            <div class="grid-2">
+
+                <!-- SECURITY SCORE -->
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Cybersecurity Score</h3>
+                            <p>Overall security health</p>
+                        </div>
+
+                        <span class="badge success">
+                            LOW RISK
+                        </span>
+                    </div>
+
+
+                    <div class="big-score">
+                        82
+                        <span>/100</span>
+                    </div>
+
+
+                    <div class="progress">
+                        <div class="progress-bar"
+                             style="width:82%;">
+                        </div>
+                    </div>
+
+
+                    <div class="score-details">
+
+                        <div>
+                            <strong>Strong</strong>
+                            <span>Password Security</span>
+                        </div>
+
+                        <div>
+                            <strong>Good</strong>
+                            <span>Network Protection</span>
+                        </div>
+
+                        <div>
+                            <strong>Good</strong>
+                            <span>Data Protection</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- THREAT OVERVIEW -->
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Threat Overview</h3>
+                            <p>Current detected risks</p>
+                        </div>
+                    </div>
+
+
+                    <div class="risk-list">
+
+                        <div class="risk-item">
+                            <div class="risk-icon high">
+                                !
+                            </div>
+
+                            <div>
+                                <strong>Weak Passwords</strong>
+                                <span>2 accounts require attention</span>
+                            </div>
+
+                            <span class="badge danger">
+                                HIGH
+                            </span>
+                        </div>
+
+
+                        <div class="risk-item">
+                            <div class="risk-icon medium">
+                                !
+                            </div>
+
+                            <div>
+                                <strong>Outdated Software</strong>
+                                <span>3 systems need updates</span>
+                            </div>
+
+                            <span class="badge warning">
+                                MEDIUM
+                            </span>
+                        </div>
+
+
+                        <div class="risk-item">
+                            <div class="risk-icon low">
+                                ✓
+                            </div>
+
+                            <div>
+                                <strong>Firewall</strong>
+                                <span>Protection is active</span>
+                            </div>
+
+                            <span class="badge success">
+                                SAFE
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY CHECKLIST -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Security Checklist</h3>
+                        <p>Recommended actions to improve protection</p>
+                    </div>
+
+                    <span class="badge">
+                        4 / 6 COMPLETE
+                    </span>
+
+                </div>
+
+
+                <div class="security-checklist">
+
+                    <div class="check-row completed">
+                        <div class="check-box">✓</div>
+
+                        <div>
+                            <strong>Enable two-factor authentication</strong>
+                            <span>Additional protection for user accounts</span>
+                        </div>
+                    </div>
+
+
+                    <div class="check-row completed">
+                        <div class="check-box">✓</div>
+
+                        <div>
+                            <strong>Update security software</strong>
+                            <span>Keep security tools updated</span>
+                        </div>
+                    </div>
+
+
+                    <div class="check-row completed">
+                        <div class="check-box">✓</div>
+
+                        <div>
+                            <strong>Configure firewall</strong>
+                            <span>Network firewall is currently active</span>
+                        </div>
+                    </div>
+
+
+                    <div class="check-row completed">
+                        <div class="check-box">✓</div>
+
+                        <div>
+                            <strong>Backup important data</strong>
+                            <span>Regular backups reduce data-loss risk</span>
+                        </div>
+                    </div>
+
+
+                    <div class="check-row">
+                        <div class="check-box empty"></div>
+
+                        <div>
+                            <strong>Change weak passwords</strong>
+                            <span>2 accounts have weak passwords</span>
+                        </div>
+
+                        <button class="small-btn">
+                            Fix
+                        </button>
+                    </div>
+
+
+                    <div class="check-row">
+                        <div class="check-box empty"></div>
+
+                        <div>
+                            <strong>Update outdated systems</strong>
+                            <span>3 systems require updates</span>
+                        </div>
+
+                        <button class="small-btn">
+                            Fix
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI INSIGHT -->
+            <div class="card ai-card">
+
+                <div class="ai-icon">
+                    ✦
+                </div>
+
+                <div class="ai-content">
+
+                    <span class="eyebrow">
+                        AI SECURITY INSIGHT
+                    </span>
+
+                    <h3>
+                        Your cybersecurity posture is currently healthy.
+                    </h3>
+
+                    <p>
+                        TrustNova recommends prioritizing weak password
+                        replacement and system updates. Completing these
+                        actions could further improve your security score.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

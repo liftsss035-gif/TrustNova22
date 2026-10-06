@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - Agriculture</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2>Agricultural Risk</h2>
+
+            <div class="user-mini">
+
+                <strong>{{ session.user_name }}</strong>
+
+                <div class="avatar">
+                    {{ session.user_name[0]|upper }}
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>Agricultural Risk Intelligence</h1>
+
+                    <p>
+                        Monitor environmental, crop and supply-chain risks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats">
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Agriculture Risk
+                    </div>
+
+                    <div class="stat-value">
+                        27
+                    </div>
+
+                    <div class="stat-icon">
+                        🌾
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Climate Risk
+                    </div>
+
+                    <div class="stat-value">
+                        Low
+                    </div>
+
+                    <div class="stat-icon">
+                        ☁
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Crop Risk
+                    </div>
+
+                    <div class="stat-value">
+                        Low
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Supply Risk
+                    </div>
+
+                    <div class="stat-value">
+                        Medium
+                    </div>
+
+                    <div class="stat-icon">
+                        ⚠
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="agriculture-grid">
+
+
+                <div class="card">
+
+                    <h3>Agricultural Risk Score</h3>
+
+                    <p>
+                        Current agricultural risk assessment.
+                    </p>
+
+                    <div class="agri-score">
+
+                        <div class="big-score">
+                            27
+                        </div>
+
+                        <div>
+
+                            <span class="badge badge-low">
+                                Low Risk
+                            </span>
+
+                            <p>
+                                Current conditions appear stable.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="progress">
+                        <span style="width:27%;"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>AI Agriculture Insight</h3>
+
+                    <div class="insight">
+
+                        <div class="insight-symbol">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Stable Agricultural Conditions
+                            </strong>
+
+                            <p>
+                                Current agricultural indicators show
+                                relatively low overall risk. Continue
+                                monitoring climate and supply conditions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RISK AREAS -->
+
+            <div class="card section-card">
+
+                <h3>Risk Areas</h3>
+
+                <p>
+                    TrustNova monitors the following agricultural factors.
+                </p>
+
+
+                <div class="risk-area-grid">
+
+
+                    <div class="risk-area">
+
+                        <div class="risk-title">
+                            <strong>Climate Risk</strong>
+                            <span>24%</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:24%;"></span>
+                        </div>
+
+                        <small>
+                            Weather and environmental conditions.
+                        </small>
+
+                    </div>
+
+
+                    <div class="risk-area">
+
+                        <div class="risk-title">
+                            <strong>Crop Risk</strong>
+                            <span>20%</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:20%;"></span>
+                        </div>
+
+                        <small>
+                            Crop health and production conditions.
+                        </small>
+
+                    </div>
+
+
+                    <div class="risk-area">
+
+                        <div class="risk-title">
+                            <strong>Water Risk</strong>
+                            <span>31%</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:31%;"></span>
+                        </div>
+
+                        <small>
+                            Water availability and irrigation conditions.
+                        </small>
+
+                    </div>
+
+
+                    <div class="risk-area">
+
+                        <div class="risk-title">
+                            <strong>Supply Chain</strong>
+                            <span>42%</span>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:42%;"></span>
+                        </div>
+
+                        <small>
+                            Transportation and supply availability.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card section-card">
+
+                <h3>🌱 Recommended Actions</h3>
+
+                <div class="actions">
+
+                    <div>
+                        <strong>Monitor climate indicators</strong>
+                        <p>
+                            Track changing environmental conditions regularly.
+                        </p>
+                    </div>
+
+                    <div>
+                        <strong>Maintain crop protection</strong>
+                        <p>
+                            Use preventive measures to reduce crop losses.
+                        </p>
+                    </div>
+
+                    <div>
+                        <strong>Review supply availability</strong>
+                        <p>
+                            Maintain alternative supply and transportation options.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+.agriculture-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:18px;
+}
+
+.agri-score {
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin:25px 0 18px;
+}
+
+.agri-score p {
+    color:#647482;
+    font-size:12px;
+    margin-top:8px;
+}
+
+.insight {
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    padding:18px;
+    border-radius:14px;
+    background:#111820;
+    border:1px solid #263441;
+}
+
+.insight-symbol {
+    min-width:42px;
+    height:42px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:12px;
+    color:#00c2d7;
+    background:rgba(0,194,215,.10);
+}
+
+.insight strong {
+    color:#f1f5f9;
+}
+
+.insight p {
+    margin-top:8px;
+    color:#91a0ad;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.section-card {
+    margin-top:18px;
+}
+
+.risk-area-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:22px;
+}
+
+.risk-area {
+    padding:18px;
+    background:#111820;
+    border:1px solid #263441;
+    border-radius:13px;
+}
+
+.risk-title {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.risk-title strong {
+    color:#f1f5f9;
+    font-size:13px;
+}
+
+.risk-title span {
+    color:#00c2d7;
+    font-size:12px;
+    font-weight:700;
+}
+
+.risk-area small {
+    display:block;
+    margin-top:10px;
+    color:#647482;
+}
+
+.actions {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.actions div {
+    padding:17px;
+    border-radius:12px;
+    background:#111820;
+    border:1px solid #263441;
+}
+
+.actions strong {
+    color:#f1f5f9;
+    font-size:13px;
+}
+
+.actions p {
+    margin-top:8px;
+    color:#647482;
+    font-size:12px;
+    line-height:1.5;
+}
+
+@media(max-width:800px) {
+
+    .agriculture-grid,
+    .risk-area-grid,
+    .actions {
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

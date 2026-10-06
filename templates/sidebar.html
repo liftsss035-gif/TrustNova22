@@ -1,0 +1,72 @@
+<aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-logo">T</div>
+        <div>
+            <h2>TrustNova</h2>
+            <span>AI Risk Intelligence</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="{{ url_for('dashboard') }}" class="nav-link">
+            <span>⌂</span>
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('finance') }}" class="nav-link">
+            <span>◈</span>
+            Finance
+        </a>
+
+        <a href="{{ url_for('cybersecurity') }}" class="nav-link">
+            <span>◉</span>
+            Cybersecurity
+        </a>
+
+        <a href="{{ url_for('agriculture') }}" class="nav-link">
+            <span>♧</span>
+            Agriculture
+        </a>
+
+        <a href="{{ url_for('analysis') }}" class="nav-link">
+            <span>⌁</span>
+            Analysis
+        </a>
+
+        <a href="{{ url_for('history') }}" class="nav-link">
+            <span>◷</span>
+            History
+        </a>
+
+        <a href="{{ url_for('alerts') }}" class="nav-link">
+            <span>⚠</span>
+            Alerts
+        </a>
+
+        <a href="{{ url_for('ai_assistant') }}" class="nav-link">
+            <span>✦</span>
+            AI Assistant
+        </a>
+
+        <a href="{{ url_for('profile') }}" class="nav-link">
+            <span>◎</span>
+            Profile
+        </a>
+
+        <a href="{{ url_for('settings') }}" class="nav-link">
+            <span>⚙</span>
+            Settings
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+        <a href="{{ url_for('logout') }}" class="nav-link logout">
+            <span>↪</span>
+            Logout
+        </a>
+    </div>
+
+</aside>

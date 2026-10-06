@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - AI Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2>AI Assistant</h2>
+
+            <div class="user-mini">
+
+                <strong>{{ session.user_name }}</strong>
+
+                <div class="avatar">
+                    {{ session.user_name[0]|upper }}
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>TrustNova AI Assistant ✦</h1>
+
+                    <p>
+                        Get quick guidance about financial,
+                        cybersecurity and agricultural risks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="assistant-card card">
+
+
+                <!-- CHAT -->
+
+                <div class="chat-area" id="chatArea">
+
+                    <div class="message ai-message">
+
+                        <div class="message-avatar">
+                            ✦
+                        </div>
+
+                        <div class="message-content">
+
+                            <strong>TrustNova AI</strong>
+
+                            <p>
+                                Hello {{ session.user_name }} 👋
+                                How can I help you with your risk
+                                intelligence today?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="suggestions">
+
+                        <button onclick="askQuestion('How can I reduce financial risk?')">
+                            Financial Risk
+                        </button>
+
+                        <button onclick="askQuestion('How can I improve cybersecurity?')">
+                            Cybersecurity
+                        </button>
+
+                        <button onclick="askQuestion('How can I reduce agricultural risk?')">
+                            Agriculture
+                        </button>
+
+                        <button onclick="askQuestion('What is a risk score?')">
+                            Risk Score
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INPUT -->
+
+                <div class="chat-input">
+
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Ask TrustNova AI..."
+                        onkeydown="handleEnter(event)"
+                    >
+
+                    <button onclick="sendMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function addMessage(text, type) {
+
+    const chat = document.getElementById("chatArea");
+
+    const message = document.createElement("div");
+
+    message.className =
+        "message " +
+        (type === "user"
+            ? "user-message"
+            : "ai-message");
+
+    if (type === "user") {
+
+        message.innerHTML = `
+            <div class="message-content">
+                <strong>You</strong>
+                <p>${text}</p>
+            </div>
+        `;
+
+    } else {
+
+        message.innerHTML = `
+            <div class="message-avatar">✦</div>
+            <div class="message-content">
+                <strong>TrustNova AI</strong>
+                <p>${text}</p>
+            </div>
+        `;
+
+    }
+
+    chat.appendChild(message);
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+
+function getAIResponse(question) {
+
+    const q = question.toLowerCase();
+
+
+    if (q.includes("financial") || q.includes("finance")) {
+
+        return "To reduce financial risk, monitor cash flow, control unnecessary expenses, maintain emergency reserves and regularly review debt obligations.";
+
+    }
+
+
+    if (q.includes("cyber") || q.includes("security")) {
+
+        return "Improve cybersecurity by using strong passwords, multi-factor authentication, software updates, secure backups and regular security assessments.";
+
+    }
+
+
+    if (q.includes("agriculture") || q.includes("crop")) {
+
+        return "Agricultural risk can be reduced by monitoring climate conditions, protecting crops, managing water resources and maintaining reliable supply options.";
+
+    }
+
+
+    if (q.includes("risk score") || q.includes("score")) {
+
+        return "A risk score represents the estimated level of risk. TrustNova uses 0–100, where lower scores indicate lower risk and higher scores indicate greater risk.";
+
+    }
+
+
+    return "I recommend running an AI Risk Analysis from the Analysis section. TrustNova can evaluate financial, cybersecurity and agricultural risk indicators.";
+
+}
+
+
+function sendMessage() {
+
+    const input =
+        document.getElementById("userInput");
+
+    const text =
+        input.value.trim();
+
+    if (!text) {
+        return;
+    }
+
+    addMessage(text, "user");
+
+    input.value = "";
+
+    setTimeout(function() {
+
+        const response =
+            getAIResponse(text);
+
+        addMessage(response, "ai");
+
+    }, 500);
+
+}
+
+
+function askQuestion(question) {
+
+    document.getElementById("userInput").value =
+        question;
+
+    sendMessage();
+
+}
+
+
+function handleEnter(event) {
+
+    if (event.key === "Enter") {
+
+        sendMessage();
+
+    }
+
+}
+
+</script>
+
+
+<style>
+
+.assistant-card {
+    margin-top:18px;
+    padding:0;
+    overflow:hidden;
+}
+
+.chat-area {
+    height:480px;
+    padding:25px;
+    overflow-y:auto;
+}
+
+.message {
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.message-avatar {
+    min-width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    color:#00c2d7;
+    background:rgba(0,194,215,.10);
+}
+
+.message-content {
+    max-width:75%;
+}
+
+.message-content strong {
+    color:#f1f5f9;
+    font-size:12px;
+}
+
+.message-content p {
+    margin-top:7px;
+    padding:13px 15px;
+    border-radius:12px;
+    color:#91a0ad;
+    background:#111820;
+    border:1px solid #263441;
+    line-height:1.6;
+    font-size:13px;
+}
+
+.user-message {
+    justify-content:flex-end;
+}
+
+.user-message .message-content p {
+    background:rgba(0,194,215,.08);
+    border-color:rgba(0,194,215,.20);
+    color:#dce8ed;
+}
+
+.suggestions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:25px;
+}
+
+.suggestions button {
+    padding:9px 13px;
+    border-radius:20px;
+    border:1px solid #263441;
+    background:#111820;
+    color:#91a0ad;
+    cursor:pointer;
+}
+
+.suggestions button:hover {
+    color:#00c2d7;
+    border-color:#00c2d7;
+}
+
+.chat-input {
+    display:flex;
+    gap:10px;
+    padding:18px;
+    border-top:1px solid #263441;
+    background:#111820;
+}
+
+.chat-input input {
+    flex:1;
+    border:1px solid #263441;
+    background:#0b0f14;
+    color:#f1f5f9;
+    padding:13px 15px;
+    border-radius:10px;
+    outline:none;
+}
+
+.chat-input input:focus {
+    border-color:#00c2d7;
+}
+
+.chat-input button {
+    width:48px;
+    border:0;
+    border-radius:10px;
+    background:#00c2d7;
+    color:#071014;
+    font-size:18px;
+    cursor:pointer;
+}
+
+@media(max-width:600px) {
+
+    .chat-area {
+        height:430px;
+        padding:18px;
+    }
+
+    .message-content {
+        max-width:88%;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

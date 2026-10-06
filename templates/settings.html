@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - Settings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2>Settings</h2>
+
+            <div class="user-mini">
+
+                <strong>{{ session.user_name }}</strong>
+
+                <div class="avatar">
+                    {{ session.user_name[0]|upper }}
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>Settings</h1>
+
+                    <p>
+                        Manage your TrustNova preferences.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- GENERAL -->
+
+            <div class="card settings-card">
+
+                <h3>General Settings</h3>
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>Risk Notifications</strong>
+
+                        <p>
+                            Receive alerts when medium or high risk
+                            is detected.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input type="checkbox" checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>AI Insights</strong>
+
+                        <p>
+                            Show AI-generated recommendations
+                            across the dashboard.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input type="checkbox" checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>Activity Tracking</strong>
+
+                        <p>
+                            Keep your analysis activity in history.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input type="checkbox" checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="card settings-card">
+
+                <h3>Security</h3>
+
+                <div class="security-item">
+
+                    <div>
+
+                        <strong>Password Protection</strong>
+
+                        <p>
+                            Your account password is securely hashed.
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+                        Protected
+                    </span>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <div>
+
+                        <strong>Session Security</strong>
+
+                        <p>
+                            Your TrustNova session is protected.
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+                        Active
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ABOUT -->
+
+            <div class="card settings-card">
+
+                <h3>About TrustNova</h3>
+
+                <div class="about-box">
+
+                    <div class="about-logo">
+                        T
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            TrustNova — AI Risk Intelligence
+                        </strong>
+
+                        <p>
+                            A risk intelligence platform designed to
+                            help users monitor financial,
+                            cybersecurity and agricultural risks.
+                        </p>
+
+                        <small>
+                            Version 1.0
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+.settings-card {
+    margin-top:18px;
+}
+
+.setting-row,
+.security-item {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid #263441;
+}
+
+.setting-row:last-child,
+.security-item:last-child {
+    border-bottom:0;
+}
+
+.setting-row strong,
+.security-item strong {
+    color:#f1f5f9;
+    font-size:13px;
+}
+
+.setting-row p,
+.security-item p {
+    margin-top:6px;
+    color:#647482;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.switch {
+    position:relative;
+    width:48px;
+    height:26px;
+    flex-shrink:0;
+}
+
+.switch input {
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.switch span {
+    position:absolute;
+    inset:0;
+    cursor:pointer;
+    border-radius:20px;
+    background:#263441;
+    transition:.25s;
+}
+
+.switch span:before {
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    left:3px;
+    top:3px;
+    border-radius:50%;
+    background:#91a0ad;
+    transition:.25s;
+}
+
+.switch input:checked + span {
+    background:#00c2d7;
+}
+
+.switch input:checked + span:before {
+    transform:translateX(22px);
+    background:#071014;
+}
+
+.security-status {
+    color:#20d89a;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.about-box {
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:20px;
+    margin-top:20px;
+    border-radius:13px;
+    background:#111820;
+    border:1px solid #263441;
+}
+
+.about-logo {
+    min-width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    color:#00c2d7;
+    background:linear-gradient(
+        135deg,
+        rgba(0,194,215,.15),
+        rgba(124,92,252,.18)
+    );
+    font-size:23px;
+    font-weight:700;
+}
+
+.about-box strong {
+    color:#f1f5f9;
+}
+
+.about-box p {
+    margin-top:7px;
+    color:#91a0ad;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.about-box small {
+    display:block;
+    margin-top:8px;
+    color:#647482;
+}
+
+@media(max-width:600px) {
+
+    .setting-row,
+    .security-item {
+        align-items:flex-start;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

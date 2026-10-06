@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    {% include 'sidebar.html' %}
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <h2>Analysis History</h2>
+
+            <div class="user-mini">
+
+                <strong>
+                    {{ session.user_name }}
+                </strong>
+
+                <div class="avatar">
+                    {{ session.user_name[0]|upper }}
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- HEADER -->
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>
+                        Risk Analysis History
+                    </h1>
+
+                    <p>
+                        Review your previous TrustNova risk assessments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats">
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Total Analyses
+                    </div>
+
+                    <div class="stat-value">
+                        {{ analyses|length }}
+                    </div>
+
+                    <div class="stat-icon">
+                        ◈
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        High Risk
+                    </div>
+
+                    <div class="stat-value">
+                        {{ analyses|selectattr('status', 'equalto', 'High Risk')|list|length }}
+                    </div>
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Medium Risk
+                    </div>
+
+                    <div class="stat-value">
+                        {{ analyses|selectattr('status', 'equalto', 'Medium Risk')|list|length }}
+                    </div>
+
+                    <div class="stat-icon">
+                        ⚠
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Low Risk
+                    </div>
+
+                    <div class="stat-value">
+                        {{ analyses|selectattr('status', 'equalto', 'Low Risk')|list|length }}
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTORY TABLE -->
+
+            <div class="card history-card">
+
+                <div class="history-header">
+
+                    <div>
+
+                        <h3>
+                            Previous Assessments
+                        </h3>
+
+                        <p>
+                            Your latest risk analysis activity.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ url_for('analysis') }}"
+                       class="btn-primary">
+
+                        + New Analysis
+
+                    </a>
+
+                </div>
+
+
+                {% if analyses %}
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Risk Score
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Result
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                        {% for item in analyses %}
+
+                            <tr>
+
+                                <!-- CATEGORY -->
+
+                                <td>
+
+                                    <strong>
+                                        {{ item.category }}
+                                    </strong>
+
+                                </td>
+
+
+                                <!-- SCORE -->
+
+                                <td>
+
+                                    <span class="history-score
+                                        {% if item.risk_score >= 70 %}
+                                            score-high
+                                        {% elif item.risk_score >= 40 %}
+                                            score-medium
+                                        {% else %}
+                                            score-low
+                                        {% endif %}
+                                    ">
+
+                                        {{ item.risk_score }}/100
+
+                                    </span>
+
+                                </td>
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    {% if item.status == "High Risk" %}
+
+                                        <span class="badge badge-high">
+                                            High Risk
+                                        </span>
+
+                                    {% elif item.status == "Medium Risk" %}
+
+                                        <span class="badge badge-medium">
+                                            Medium Risk
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="badge badge-low">
+                                            Low Risk
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <!-- RESULT -->
+
+                                <td class="result-text">
+
+                                    {{ item.result }}
+
+                                </td>
+
+
+                                <!-- DATE -->
+
+                                <td class="date-text">
+
+                                    {{ item.created_at }}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-history">
+
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+                    <h3>
+                        No analyses yet
+                    </h3>
+
+                    <p>
+                        Run your first AI risk assessment
+                        to see it appear here.
+                    </p>
+
+                    <a href="{{ url_for('analysis') }}"
+                       class="btn-primary">
+
+                        Start Analysis
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= PAGE CSS ================= -->
+
+<style>
+
+.history-card {
+    margin-top: 18px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.history-header h3 {
+    margin-bottom: 5px;
+}
+
+.history-header p {
+    color: #647482;
+    font-size: 13px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+thead {
+    background: #111820;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    color: #91a0ad;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #263441;
+}
+
+td {
+    padding: 17px 15px;
+    border-bottom: 1px solid #202c37;
+    color: #f1f5f9;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: rgba(0,194,215,0.035);
+}
+
+.history-score {
+    font-weight: 700;
+}
+
+.score-high {
+    color: #ff5c70;
+}
+
+.score-medium {
+    color: #ffad42;
+}
+
+.score-low {
+    color: #20d89a;
+}
+
+.result-text {
+    max-width: 350px;
+    color: #91a0ad;
+    line-height: 1.5;
+}
+
+.date-text {
+    color: #647482;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.empty-history {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(0,194,215,0.08);
+
+    color: #00c2d7;
+
+    font-size: 28px;
+}
+
+.empty-history h3 {
+    margin-bottom: 8px;
+}
+
+.empty-history p {
+    color: #647482;
+    margin-bottom: 22px;
+}
+
+@media (max-width: 700px) {
+
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+
+</body>
+
+</html>
