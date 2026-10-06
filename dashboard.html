@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TrustNova - Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    {% include 'sidebar.html' %}
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <h2>Dashboard</h2>
+
+
+            <div class="user-mini">
+
+                <strong>
+                    {{ session.user_name }}
+                </strong>
+
+
+                <div class="avatar">
+
+                    {{ session.user_name[0]|upper }}
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>
+                        Welcome back, {{ session.user_name }} 👋
+                    </h1>
+
+                    <p>
+                        Here's your TrustNova risk intelligence overview.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="stats">
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Total Analyses
+                    </div>
+
+                    <div class="stat-value">
+                        {{ total_analyses }}
+                    </div>
+
+                    <div class="stat-icon">
+                        ◈
+                    </div>
+
+                </div>
+
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        High Risk Cases
+                    </div>
+
+                    <div class="stat-value">
+                        {{ high_risk }}
+                    </div>
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                </div>
+
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        Risk Categories
+                    </div>
+
+                    <div class="stat-value">
+                        03
+                    </div>
+
+                    <div class="stat-icon">
+                        ✦
+                    </div>
+
+                </div>
+
+
+
+                <div class="card stat-card">
+
+                    <div class="stat-label">
+                        AI Status
+                    </div>
+
+                    <div class="stat-value">
+                        Active
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================= RISK INTELLIGENCE ================= -->
+
+            <div class="grid-2">
+
+
+                <div class="card">
+
+                    <h3>
+                        Risk Intelligence
+                    </h3>
+
+                    <p>
+                        Latest risk scores from your assessments.
+                    </p>
+
+
+
+                    <!-- FINANCE -->
+
+                    <div class="risk-row">
+
+                        <div class="risk-heading">
+
+                            <strong>
+                                💰 Financial Risk
+                            </strong>
+
+                            <span>
+                                {{ finance_score }}/100
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <span
+                                class="dynamic-progress"
+                                data-score="{{ finance_score }}">
+                            </span>
+
+                        </div>
+
+
+                        <small>
+
+                            {% if finance_score >= 70 %}
+
+                                High Risk
+
+                            {% elif finance_score >= 40 %}
+
+                                Medium Risk
+
+                            {% elif finance_score > 0 %}
+
+                                Low Risk
+
+                            {% else %}
+
+                                No analysis yet
+
+                            {% endif %}
+
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- CYBERSECURITY -->
+
+                    <div class="risk-row">
+
+                        <div class="risk-heading">
+
+                            <strong>
+                                🛡️ Cybersecurity Risk
+                            </strong>
+
+                            <span>
+                                {{ cyber_score }}/100
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <span
+                                class="dynamic-progress"
+                                data-score="{{ cyber_score }}">
+                            </span>
+
+                        </div>
+
+
+                        <small>
+
+                            {% if cyber_score >= 70 %}
+
+                                High Risk
+
+                            {% elif cyber_score >= 40 %}
+
+                                Medium Risk
+
+                            {% elif cyber_score > 0 %}
+
+                                Low Risk
+
+                            {% else %}
+
+                                No analysis yet
+
+                            {% endif %}
+
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- AGRICULTURE -->
+
+                    <div class="risk-row">
+
+                        <div class="risk-heading">
+
+                            <strong>
+                                🌾 Agricultural Risk
+                            </strong>
+
+                            <span>
+                                {{ agriculture_score }}/100
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <span
+                                class="dynamic-progress"
+                                data-score="{{ agriculture_score }}">
+                            </span>
+
+                        </div>
+
+
+                        <small>
+
+                            {% if agriculture_score >= 70 %}
+
+                                High Risk
+
+                            {% elif agriculture_score >= 40 %}
+
+                                Medium Risk
+
+                            {% elif agriculture_score > 0 %}
+
+                                Low Risk
+
+                            {% else %}
+
+                                No analysis yet
+
+                            {% endif %}
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ================= AI SCORE ================= -->
+
+                <div class="card">
+
+
+                    <h3>
+                        AI Intelligence Score
+                    </h3>
+
+
+                    <p>
+                        Overall risk intelligence score.
+                    </p>
+
+
+                    <div class="overall-score">
+
+                        <div class="big-score">
+
+                            {{ overall_score }}
+
+                        </div>
+
+
+                        <div>
+
+                            {% if overall_score >= 70 %}
+
+                                <span class="badge badge-high">
+                                    High Risk
+                                </span>
+
+                            {% elif overall_score >= 40 %}
+
+                                <span class="badge badge-medium">
+                                    Medium Risk
+                                </span>
+
+                            {% elif overall_score > 0 %}
+
+                                <span class="badge badge-low">
+                                    Stable
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge badge-low">
+                                    No Data
+                                </span>
+
+                            {% endif %}
+
+
+                            <p class="score-description">
+
+                                {% if overall_score == 0 %}
+
+                                    Run an analysis to generate your
+                                    overall intelligence score.
+
+                                {% elif overall_score >= 70 %}
+
+                                    Immediate attention is recommended.
+
+                                {% elif overall_score >= 40 %}
+
+                                    Continue monitoring your risk factors.
+
+                                {% else %}
+
+                                    Your current risk profile appears stable.
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <span
+                            class="dynamic-progress"
+                            data-score="{{ overall_score }}">
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================= LATEST ANALYSIS ================= -->
+
+            <div class="card latest-card">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h3>
+                            Latest Analysis
+                        </h3>
+
+                        <p>
+                            Your most recent risk assessment.
+                        </p>
+
+                    </div>
+
+
+                    <a href="{{ url_for('analysis') }}"
+                       class="btn-primary">
+
+                        + New Analysis
+
+                    </a>
+
+                </div>
+
+
+
+                {% if latest %}
+
+
+                <div class="latest-analysis">
+
+
+                    <div class="latest-icon">
+                        ✦
+                    </div>
+
+
+                    <div class="latest-info">
+
+                        <strong>
+                            {{ latest.category }}
+                        </strong>
+
+                        <p>
+                            {{ latest.result }}
+                        </p>
+
+                        <small>
+                            {{ latest.created_at }}
+                        </small>
+
+                    </div>
+
+
+                    <div class="latest-score">
+
+                        <strong>
+                            {{ latest.risk_score }}
+                        </strong>
+
+                        <span>
+                            /100
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                {% else %}
+
+
+                <div class="empty-dashboard">
+
+                    <div class="empty-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        No analysis yet
+                    </h3>
+
+                    <p>
+                        Run your first risk assessment to populate
+                        your dashboard.
+                    </p>
+
+                    <a href="{{ url_for('analysis') }}"
+                       class="btn-primary">
+
+                        Start Analysis
+
+                    </a>
+
+                </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- ================= QUICK ACTIONS ================= -->
+
+            <div class="card quick-card">
+
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+
+                <p>
+                    Access your most important TrustNova tools.
+                </p>
+
+
+                <div class="quick-grid">
+
+
+                    <a href="{{ url_for('analysis') }}"
+                       class="quick-action">
+
+                        <span>
+                            ◈
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                AI Analysis
+                            </strong>
+
+                            <small>
+                                Start a new risk assessment
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a href="{{ url_for('history') }}"
+                       class="quick-action">
+
+                        <span>
+                            ◷
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                View History
+                            </strong>
+
+                            <small>
+                                Review previous analyses
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a href="{{ url_for('alerts') }}"
+                       class="quick-action">
+
+                        <span>
+                            !
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Check Alerts
+                            </strong>
+
+                            <small>
+                                View important risk alerts
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- ================= PAGE CSS ================= -->
+
+<style>
+
+.risk-row {
+    margin-top: 24px;
+}
+
+.risk-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 9px;
+}
+
+.risk-heading strong {
+    color: #f1f5f9;
+    font-size: 13px;
+}
+
+.risk-heading span {
+    color: #00c2d7;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.risk-row small {
+    display: block;
+    margin-top: 7px;
+    color: #647482;
+    font-size: 11px;
+}
+
+.overall-score {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin: 28px 0 18px;
+}
+
+.score-description {
+    margin-top: 9px;
+    color: #647482;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.latest-card {
+    margin-top: 18px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.section-heading p {
+    margin-top: 5px;
+    color: #647482;
+    font-size: 12px;
+}
+
+.latest-analysis {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 22px;
+    padding: 18px;
+    background: #111820;
+    border: 1px solid #263441;
+    border-radius: 13px;
+}
+
+.latest-icon {
+    min-width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #00c2d7;
+    background: rgba(0,194,215,.10);
+}
+
+.latest-info {
+    flex: 1;
+}
+
+.latest-info strong {
+    color: #f1f5f9;
+    font-size: 14px;
+}
+
+.latest-info p {
+    margin-top: 6px;
+    color: #91a0ad;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.latest-info small {
+    display: block;
+    margin-top: 8px;
+    color: #647482;
+    font-size: 10px;
+}
+
+.latest-score {
+    text-align: right;
+}
+
+.latest-score strong {
+    color: #00c2d7;
+    font-size: 25px;
+}
+
+.latest-score span {
+    color: #647482;
+    font-size: 11px;
+}
+
+.empty-dashboard {
+    text-align: center;
+    padding: 45px 20px 20px;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: #00c2d7;
+    background: rgba(0,194,215,.08);
+    font-size: 22px;
+}
+
+.empty-dashboard h3 {
+    color: #f1f5f9;
+}
+
+.empty-dashboard p {
+    margin: 7px 0 18px;
+    color: #647482;
+    font-size: 12px;
+}
+
+.quick-card {
+    margin-top: 18px;
+}
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.quick-action {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    text-decoration: none;
+    background: #111820;
+    border: 1px solid #263441;
+    border-radius: 12px;
+    transition: all .25s ease;
+}
+
+.quick-action:hover {
+    transform: translateY(-2px);
+    border-color: #00c2d7;
+    background: #151f29;
+}
+
+.quick-action > span {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: #00c2d7;
+    background: linear-gradient(
+        135deg,
+        rgba(0,194,215,.12),
+        rgba(124,92,252,.16)
+    );
+}
+
+.quick-action strong {
+    display: block;
+    color: #f1f5f9;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.quick-action small {
+    color: #647482;
+    font-size: 11px;
+}
+
+@media(max-width:700px) {
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .latest-analysis {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .latest-score {
+        width: 100%;
+        text-align: left;
+    }
+
+}
+
+</style>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bars =
+        document.querySelectorAll(".dynamic-progress");
+
+
+    bars.forEach(function (bar) {
+
+        let score =
+            parseInt(bar.dataset.score) || 0;
+
+
+        score =
+            Math.max(0, Math.min(score, 100));
+
+
+        bar.style.width =
+            score + "%";
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>
